@@ -1,0 +1,11 @@
+ext {
+    libraries = [
+            koinCore             : 'org.koin:koin-core:2.1.0',
+            koinTest             : 'org.koin:koin-test:2.1.0',
+            koinAndroid          : 'org.koin:koin-android:2.1.0',
+            koinAndroidViewModel : 'org.koin:koin-android-viewmodel:2.1.0',
+
+            retrofit             : 'com.squareup.retrofit2:retrofit:2.9.0',
+            retrofitGsonConverter: 'com.squareup.retrofit2:converter-gson:2.7.2',
+    ]
+}
