@@ -7,5 +7,9 @@ ext {
 
             retrofit             : 'com.squareup.retrofit2:retrofit:2.9.0',
             retrofitGsonConverter: 'com.squareup.retrofit2:converter-gson:2.7.2',
+
+            navigationFragment   : "androidx.navigation:navigation-fragment-ktx:2.3.0",
+            navigationUi         : "androidx.navigation:navigation-ui-ktx:2.3.0",
+
     ]
 }
