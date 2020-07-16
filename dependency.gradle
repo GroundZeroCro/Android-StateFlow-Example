@@ -11,5 +11,6 @@ ext {
             navigationFragment   : "androidx.navigation:navigation-fragment-ktx:2.3.0",
             navigationUi         : "androidx.navigation:navigation-ui-ktx:2.3.0",
 
+            liveDataLifecycle    : "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0",
     ]
 }

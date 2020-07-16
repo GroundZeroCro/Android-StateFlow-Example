@@ -1,7 +1,8 @@
-package com.ground.zero.searchflow
+package com.ground.zero.searchflow.core
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.ground.zero.searchflow.R
 
 class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
