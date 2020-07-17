@@ -2,7 +2,7 @@ package com.ground.zero.searchflow.search.ui
 
 import android.text.Editable
 import androidx.lifecycle.ViewModel
-import com.ground.zero.searchflow.search.domain.SearchRepository
+import com.ground.zero.searchflow.search.domain.SearchUseCase
 import com.ground.zero.searchflow.search.domain.SearchResult
 import com.ground.zero.searchflow.search.utils.toSearchQuery
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.*
 @FlowPreview
 @ExperimentalCoroutinesApi
 class SearchViewModel(
-    private val repository: SearchRepository
+    private val useCase: SearchUseCase
 ) : ViewModel() {
 
     private val queryFlow = MutableStateFlow(INITIAL_QUERY)
@@ -21,7 +21,7 @@ class SearchViewModel(
         .debounce(SEARCH_DEBOUNCE_MIL)
         .transform {
             emit(SearchResult.SearchLoading)
-            emit(repository.getRequestResponse(it))
+            emit(useCase.getRequestResponse(it))
         }
 
     fun setQuery(editable: Editable?) {
