@@ -1,0 +1,16 @@
+<layout>
+
+    <data>
+
+        <variable
+            name="repository"
+            type="com.ground.zero.searchflow.search.domain.SearchRepositoryDomain" />
+    </data>
+
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/repository_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@{repository.fullName}"
+        android:textSize="@dimen/button_normal" />
+</layout>
