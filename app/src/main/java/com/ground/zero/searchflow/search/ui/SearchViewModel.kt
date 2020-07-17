@@ -19,10 +19,7 @@ class SearchViewModel(
 
     fun getRepositoryFlow() = queryFlow
         .debounce(SEARCH_DEBOUNCE_MIL)
-        .transform {
-            emit(SearchResult.SearchLoading)
-            emit(useCase.getRequestResponse(it))
-        }
+        .flatMapLatest { useCase.getResponseFlow(it) }
 
     fun setQuery(editable: Editable?) {
         editable toSearchQuery { valid, query ->

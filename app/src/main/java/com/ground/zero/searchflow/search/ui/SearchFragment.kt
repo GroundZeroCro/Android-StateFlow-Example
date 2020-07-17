@@ -6,14 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.ground.zero.searchflow.databinding.FragmentSearchBinding
 import com.ground.zero.searchflow.search.domain.SearchResult
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -44,13 +42,18 @@ class SearchFragment : Fragment() {
         lifecycleScope.launchWhenStarted {
             viewModel.getRepositoryFlow().collect {
                 when (it) {
-                    is SearchResult.SearchLoading -> println("Loading data")
-                    is SearchResult.SearchSuccess -> adapter.submitList(it.repositories)
-                    is SearchResult.SearchError -> println("Loading error")
+                    is SearchResult.SearchLoading -> showProgress(true)
+                    is SearchResult.SearchSuccess -> {
+                        adapter.submitList(it.repositories)
+                        showProgress(false)
+                    }
+                    is SearchResult.SearchError -> showProgress(true)
                 }
             }
         }
     }
+
+    private fun showProgress(show: Boolean) = apply { binding.progressVisibility = show }
 
     private fun observeSearchInput() {
         binding.searchInput.addTextChangedListener {

@@ -78,4 +78,6 @@ dependencies {
 
     implementation libraries.coroutinesCore
     implementation libraries.coroutinesAndroid
+
+    implementation libraries.progressSpinKit
 }
