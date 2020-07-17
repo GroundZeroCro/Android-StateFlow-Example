@@ -56,6 +56,7 @@ dependencies {
     implementation libraries.koinTest
     implementation libraries.koinAndroid
     implementation libraries.koinAndroidViewModel
+
     implementation libraries.retrofit
     implementation libraries.retrofitGsonConverter
 
@@ -65,5 +66,4 @@ dependencies {
     implementation libraries.liveDataLifecycle
 
     implementation libraries.neumorphismView
-    implementation libraries.materialDesign
 }

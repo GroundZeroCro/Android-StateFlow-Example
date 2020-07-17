@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="normal_padding">8dp</dimen>
-    <dimen name="button_normal">18sp</dimen>
+    <dimen name="button_normal">23sp</dimen>
+    <dimen name="title">27sp</dimen>
+    <dimen name="large_padding">16dp</dimen>
 </resources>

@@ -1,66 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.thelumiereguy.neumorphicview.views.NeumorphicConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/root"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/dark_grey"
-    app:enable_preview="true">
+    android:layout_height="match_parent">
 
-    <TextView
+    <soup.neumorphism.NeumorphTextView
+        android:id="@+id/search_title"
+        style="@style/Widget.Neumorph.TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:letterSpacing="0.1"
+        android:layout_marginTop="@dimen/large_padding"
         android:text="@string/title_repositories"
-        android:textAllCaps="true"
-        android:textColor="@color/light_green"
-        android:textSize="@dimen/button_normal"
+        android:textColor="#EFEEEE"
+        android:textSize="@dimen/title"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_neu_backgroundColor="@color/dark_grey" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
-        android:layout_width="wrap_content"
+    <soup.neumorphism.NeumorphCardView
+        style="@style/Widget.Neumorph.CardView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/search_input_parent"
+        app:layout_constraintTop_toBottomOf="@id/search_title"
+        app:neumorph_shapeType="pressed">
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/large_padding"/>
+    </soup.neumorphism.NeumorphCardView>
+
+    <soup.neumorphism.NeumorphCardView
+        android:id="@+id/search_input_parent"
+        style="@style/Widget.Neumorph.CardView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="16dp"
-        android:insetLeft="0dp"
-        android:insetTop="0dp"
-        android:insetRight="0dp"
-        android:insetBottom="0dp"
-        android:paddingStart="12dp"
-        android:paddingTop="12dp"
-        android:paddingEnd="20dp"
-        android:paddingBottom="12dp"
-        android:text="@string/button_search"
-        android:textAllCaps="false"
-        android:textColor="#e9ebea"
-        android:textSize="@dimen/button_normal"
-        app:backgroundTint="#252729"
-        app:cornerRadius="36dp"
-        app:icon="@drawable/ic_search"
-        app:iconPadding="12dp"
-        app:iconSize="26dp"
-        app:iconTint="@null"
-        app:layout_cardRadius="128"
+        android:layout_marginTop="@dimen/large_padding"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_enableHighlight="true"
-        app:layout_enableShadow="true"
-        app:layout_highlightColor="#313335"
-        app:layout_highlightDx="-4dp"
-        app:layout_highlightDy="-4dp"
-        app:layout_highlightRadius="8dp"
-        app:layout_neu_backgroundColor="#28292B"
-        app:layout_shadowColor="#1A1D1E"
-        app:layout_shadowDx="8dp"
-        app:layout_shadowDy="8dp"
-        app:layout_shadowRadius="8dp" />
-</com.thelumiereguy.neumorphicview.views.NeumorphicConstraintLayout>
+        app:layout_constraintRight_toRightOf="parent">
+
+        <EditText
+            android:id="@+id/search_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/button_search"
+            android:paddingLeft="@dimen/large_padding"
+            android:paddingTop="@dimen/normal_padding"
+            android:paddingRight="@dimen/large_padding"
+            android:paddingBottom="@dimen/normal_padding"
+            android:singleLine="true"
+            android:textSize="@dimen/button_normal" />
+    </soup.neumorphism.NeumorphCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
