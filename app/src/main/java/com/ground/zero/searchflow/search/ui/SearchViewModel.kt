@@ -8,7 +8,7 @@ import com.ground.zero.searchflow.search.domain.SearchRepository
 class SearchViewModel(
     private val repository: SearchRepository
 ) : ViewModel() {
-    // TODO dispatcher
+
     fun getRepositories(query: String) =
         repository.getSearchRepositories(query).asLiveData(viewModelScope.coroutineContext)
 }

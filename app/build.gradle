@@ -63,4 +63,7 @@ dependencies {
     implementation libraries.navigationUi
 
     implementation libraries.liveDataLifecycle
+
+    implementation libraries.neumorphismView
+    implementation libraries.materialDesign
 }

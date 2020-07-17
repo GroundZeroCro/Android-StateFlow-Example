@@ -20,7 +20,11 @@ class SearchFragment : Fragment() {
     ): View? {
 
         viewModel.getRepositories("Android").observe(viewLifecycleOwner, Observer {
-            println(it)
+            when(it) {
+                is SearchResult.SearchLoading-> println("Loading data")
+                is SearchResult.SearchSuccess-> println(it.repositories)
+                is SearchResult.SearchError-> println("Loading error")
+            }
         })
 
         return inflater.inflate(R.layout.fragment_search, container, false)
