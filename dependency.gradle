@@ -14,5 +14,8 @@ ext {
             liveDataLifecycle    : "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0",
 
             neumorphismView      : 'com.github.fornewid:neumorphism:0.1.11',
+
+            coroutinesCore       : 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.6',
+            coroutinesAndroid    : 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.6',
     ]
 }

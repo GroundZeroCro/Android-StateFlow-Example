@@ -75,4 +75,7 @@ dependencies {
     implementation libraries.liveDataLifecycle
 
     implementation libraries.neumorphismView
+
+    implementation libraries.coroutinesCore
+    implementation libraries.coroutinesAndroid
 }

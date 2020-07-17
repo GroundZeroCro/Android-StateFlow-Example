@@ -1,21 +1,17 @@
 package com.ground.zero.searchflow.search.domain
 
 import com.ground.zero.searchflow.search.data.SearchNetworkInstance
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.flow.FlowCollector
+import kotlinx.coroutines.launch
 
 class SearchRepository(
     private val searchNetworkInstance: SearchNetworkInstance,
     private val searchMapper: SearchMapper
 ) {
 
-    fun getSearchRepositories(
-        query: String
-    ): Flow<SearchResult> = flow {
-
-        emit(SearchResult.SearchLoading)
-
+    suspend fun getRequestResponse(query: String): SearchResult {
         val request = searchNetworkInstance.searchCalls.searchRepositories(
             query = query,
             page = PAGE,
@@ -26,12 +22,11 @@ class SearchRepository(
             if (isSuccessful) {
                 if (body() != null) {
                     val mapper = searchMapper.responseToDomain(body()!!)
-                    emit(SearchResult.SearchSuccess(mapper))
+                    return SearchResult.SearchSuccess(mapper)
                 }
-            } else {
-                emit(SearchResult.SearchError())
             }
         }
+        return SearchResult.SearchError()
     }
 
     companion object {

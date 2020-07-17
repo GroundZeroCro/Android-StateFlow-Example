@@ -7,11 +7,18 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.ground.zero.searchflow.databinding.FragmentSearchBinding
 import com.ground.zero.searchflow.search.domain.SearchResult
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 
+@FlowPreview
+@ExperimentalCoroutinesApi
 class SearchFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchBinding
@@ -34,14 +41,15 @@ class SearchFragment : Fragment() {
     }
 
     private fun observeSearchedRepositories() {
-        viewModel.getRepositories().observe(viewLifecycleOwner, Observer {
-            println(it)
-            when (it) {
-                is SearchResult.SearchLoading -> println("Loading data")
-                is SearchResult.SearchSuccess -> adapter.submitList(it.repositories)
-                is SearchResult.SearchError -> println("Loading error")
+        lifecycleScope.launchWhenStarted {
+            viewModel.getRepositoryFlow().collect {
+                when (it) {
+                    is SearchResult.SearchLoading -> println("Loading data")
+                    is SearchResult.SearchSuccess -> adapter.submitList(it.repositories)
+                    is SearchResult.SearchError -> println("Loading error")
+                }
             }
-        })
+        }
     }
 
     private fun observeSearchInput() {
