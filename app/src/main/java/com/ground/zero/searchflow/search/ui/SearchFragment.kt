@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.ground.zero.searchflow.databinding.FragmentSearchBinding
@@ -25,6 +26,7 @@ class SearchFragment : Fragment() {
     }.root.also {
         instantiateRecyclerView()
         observeSearchedRepositories()
+        observeSearchInput()
     }
 
     private fun instantiateRecyclerView() {
@@ -32,12 +34,19 @@ class SearchFragment : Fragment() {
     }
 
     private fun observeSearchedRepositories() {
-        viewModel.getRepositories("Android").observe(viewLifecycleOwner, Observer {
+        viewModel.getRepositories().observe(viewLifecycleOwner, Observer {
+            println(it)
             when (it) {
                 is SearchResult.SearchLoading -> println("Loading data")
                 is SearchResult.SearchSuccess -> adapter.submitList(it.repositories)
                 is SearchResult.SearchError -> println("Loading error")
             }
         })
+    }
+
+    private fun observeSearchInput() {
+        binding.searchInput.addTextChangedListener {
+            viewModel.setQuery(it)
+        }
     }
 }
