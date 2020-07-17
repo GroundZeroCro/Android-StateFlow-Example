@@ -18,7 +18,7 @@ class SearchViewModel(
     private val queryFlow = MutableStateFlow(INITIAL_QUERY)
 
     fun getRepositoryFlow() = queryFlow
-        .debounce(500)
+        .debounce(SEARCH_DEBOUNCE_MIL)
         .transform {
             emit(SearchResult.SearchLoading)
             emit(repository.getRequestResponse(it))
@@ -32,5 +32,6 @@ class SearchViewModel(
 
     companion object {
         private const val INITIAL_QUERY = "Android"
+        private const val SEARCH_DEBOUNCE_MIL = 500L
     }
 }
