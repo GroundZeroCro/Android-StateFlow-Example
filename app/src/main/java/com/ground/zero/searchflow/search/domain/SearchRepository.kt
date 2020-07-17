@@ -2,6 +2,7 @@ package com.ground.zero.searchflow.search.domain
 
 import com.ground.zero.searchflow.search.data.SearchNetworkInstance
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.flow
 
 class SearchRepository(

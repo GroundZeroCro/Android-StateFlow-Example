@@ -6,9 +6,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.ground.zero.searchflow.databinding.ItemSearchRepositoryBinding
-import com.ground.zero.searchflow.search.domain.SearchRepositoryDomain
+import com.ground.zero.searchflow.search.domain.SearchDomain
 
-class SearchAdapter : ListAdapter<SearchRepositoryDomain, SearchAdapter.ViewHolder>(DiffCallback) {
+class SearchAdapter : ListAdapter<SearchDomain, SearchAdapter.ViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(
@@ -25,20 +25,20 @@ class SearchAdapter : ListAdapter<SearchRepositoryDomain, SearchAdapter.ViewHold
 
     class ViewHolder(private val binding: ItemSearchRepositoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(repository: SearchRepositoryDomain) {
+        fun bind(repository: SearchDomain) {
             binding.repository = repository
         }
     }
 
-    private object DiffCallback : DiffUtil.ItemCallback<SearchRepositoryDomain>() {
+    private object DiffCallback : DiffUtil.ItemCallback<SearchDomain>() {
         override fun areItemsTheSame(
-            oldItem: SearchRepositoryDomain,
-            newItem: SearchRepositoryDomain
+            oldItem: SearchDomain,
+            newItem: SearchDomain
         ): Boolean = oldItem.name == newItem.name
 
         override fun areContentsTheSame(
-            oldItem: SearchRepositoryDomain,
-            newItem: SearchRepositoryDomain
+            oldItem: SearchDomain,
+            newItem: SearchDomain
         ): Boolean = oldItem == newItem
     }
 }

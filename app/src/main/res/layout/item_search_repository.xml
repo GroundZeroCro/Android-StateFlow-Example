@@ -4,7 +4,7 @@
 
         <variable
             name="repository"
-            type="com.ground.zero.searchflow.search.domain.SearchRepositoryDomain" />
+            type="com.ground.zero.searchflow.search.domain.SearchDomain" />
     </data>
 
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"

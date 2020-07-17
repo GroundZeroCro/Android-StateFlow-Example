@@ -4,8 +4,8 @@ import com.ground.zero.searchflow.search.data.SearchResponse
 
 class SearchMapper {
 
-    fun responseToDomain(searchResponse: SearchResponse): List<SearchRepositoryDomain> =
+    fun responseToDomain(searchResponse: SearchResponse): List<SearchDomain> =
         searchResponse.repositories.map {
-            SearchRepositoryDomain(it.name, it.fullName, it.description)
+            SearchDomain(it.name, it.fullName, it.description)
         }
 }
